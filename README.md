@@ -79,9 +79,12 @@ In ClearOS UI, open incoming port 8443
 	systemctl enable unifi.service
 	
 ##8. Cleanup
+
 	rm -rf ~/UniFi.unix.zip
 	systemctl reboot
+	
 ##9. Pull in Letsencrypt certs from Clear
+
 	openssl pkcs12 -export -inkey /etc/letsencrypt/live/your.domain.name/privkey.pem  -in /etc/letsencrypt/live/your.domain.name/fullchain.pem -out /root/cert.p12 -name ubnt -password pass:temppass
 	keytool -importkeystore -deststorepass aircontrolenterprise -destkeypass aircontrolenterprise -destkeystore /opt/UniFi/data/keystore -srckeystore /root/cert.p12 -srcstoretype PKCS12 -srcstorepass temppass -alias ubnt -noprompt
 
